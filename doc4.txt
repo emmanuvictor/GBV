@@ -1,0 +1,19 @@
+Modo binário obrigatório: todos os acessos ao container (dados e diretório)
+devem ser feitos com fread/fwrite.
+• Limite rígido de buffers:
+◦ Apenas 2 buffers de tamanho fixo (definidos por BUFFER_SIZE (pode ser o
+tamanho do maior arquivo)) podem existir em memória.
+◦ Não é permitido carregar um documento inteiro em memória.
+•
+Diretório
+dinâmico:
+em
+RAM,
+o
+diretório
+deve
+ser
+gerenciado
+com
+malloc/realloc/free.
+• Reordenação: a operação -o deve refletir a ordem escolhida

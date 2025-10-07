@@ -1,0 +1,46 @@
+----------------------------------------------------------------------------------
+Autoria
+    Victor Emmanuel de Souza Riberio - 2025/2
+----------------------------------------------------------------------------------
+Lista de diretorios e arquivos:
+    Diretórios:
+        -GBV: Diretório principal do projeto contendo o código-fonte e arquivos de teste;
+    Arquivos:
+        -main.c: Arquivo principal, onde executa comandos vindo do terminal (-a, -l, -v, -o, -r), junto com todas as funções criadas.
+        -gbv.c: Contém as principais funções para execução da biblioteca virtual, incluindo:
+            .gbv_create: Cria uma nova biblioteca;
+            .gbv_open: Abre e carrega o diretório da biblioteca;
+            .gbv_add: Adiciona novos documentos à biblioteca;
+            .gbv_remove: Remove documentos selecionados de uma determinada biblioteca;
+            .gbv_list: Lista os documentos armazenados na biblioteca;
+            .gbv_view: Visualiza o conteudo dos documento, separaddo por blocos;
+            .gbv_order: Reordena os documentos conforme critério escolhido.
+        -gbv.h: Cabeçalho com estruturas e protótipos das funções declaradas em gbv.c.
+        -util.c: Funções auxiliares para manipulação de datas e formatação de saída, além de constantes como BUFFER_SIZE.
+        -util.h: Cabeçalho do util.c.
+        -Makefile: Script de compilação simplificado para gerar o executável gbv.
+        -Arquivos de teste:
+            .doc.txt;
+            .doc1.txt;
+            .doc2.txt;
+            .doc3.txt;
+            .doc4.txt;
+            .Aula 14 - Exclusão em Árvores B.pdf
+            .forger.jpeg;
+            .sccp.png;
+        -LEIAME.txt: Este arquivo de documentação.
+
+----------------------------------------------------------------------------------
+Algoritmos e Estruturas de Dados:
+    Usei um vetor dinâmico de structs (Document *docs) como diretório da biblioteca, armazenando nome, tamanho, data e offset de cada arquivo.
+    A cada operação (-a, -r, -l, -v, -o), o programa carrega o diretório em memória, faz a modificação necessária e depois reescreve o diretório atualizado no container .gbv, atualizando o superbloco.
+    Optei por essa abordagem por ser simples de manipular, segura contra corrupção de dados e fácil de integrar com funções de leitura e escrita em blocos (fseek, ftell, fread, fwrite).
+    A principal dificuldade foi manipular corretamente arquivos binários e offsets, além de garantir que não houvesse vazamento de memória e que o arquivo permanecesse consistente após cada operação.
+
+----------------------------------------------------------------------------------
+Bugs encontrados durante o trabalho
+    Os bugs conhecidos ao fazer o trablho foram:
+        -Segfault no gbv_add que era causado pelo 'fread' estar em ponteiro nulo. Corrigido adicionando verificações de abertura;
+        -Cálculo incorreto do offset onde o programa estava regravando o diretório na posição errada. Corrigido movendo o calculo de 'new_doc_offset' e 'new_dir_offset' para local corretor;
+        -Vazamento de memória quando 'lib->docs' não estava sendo liberada após execução de cada comando. Corrigido com a função 'gbv_close' 
+----------------------------------------------------------------------------------
