@@ -1,2 +1,2 @@
 # GBV
-Implementação do gerenciador de uma biblioteca virtual, programa gbv
+Implementação do gerenciador de uma biblioteca virtual, programa GBV
